@@ -1,0 +1,35 @@
+Vagrant.configure("2") do |config|
+
+    config.vm.define "josedom" do |josedom|
+        josedom.vm.box = "debian/bookworm64"
+        josedom.vm.hostname = "nodomaster"
+        josedom.vm.network "private_network", ip: "10.0.0.1"
+        josedom.vm.synced_folder ".", "/vagrant", disabled: true
+        josedom.vm.provider :libvirt do |libvirt|
+            libvirt.memory = 2048
+            libvirt.cpus = 2
+        end
+    end
+
+    config.vm.define "jmdp" do |jmdp|
+        jmdp.vm.box = "debian/bookworm64"
+        jmdp.vm.hostname = "nodoworker1"
+        jmdp.vm.network "private_network", ip: "10.0.0.2"
+        jmdp.vm.synced_folder ".", "/vagrant", disabled: true
+        jmdp.vm.provider :libvirt do |libvirt|
+            libvirt.memory = 2048
+            libvirt.cpus = 2
+        end
+    end
+
+    config.vm.define "oscar" do |oscar|
+        oscar.vm.box = "debian/bookworm64"
+        oscar.vm.hostname = "nodoworker2"
+        oscar.vm.network "private_network", ip: "10.0.0.3"
+        oscar.vm.synced_folder ".", "/vagrant", disabled: true
+        oscar.vm.provider :libvirt do |libvirt|
+            libvirt.memory = 2048
+            libvirt.cpus = 2
+        end
+    end
+end
